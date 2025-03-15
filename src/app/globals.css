@@ -5,6 +5,7 @@
 :root {
   --background: #e7e7e7;
   --foreground: #333333;
+  --foreground-50: #777777;
   --cards: #f7f7f7;
   --positive: #72e585;
   --positive-50: #72e58580;
