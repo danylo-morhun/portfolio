@@ -1,103 +1,181 @@
+"use client";
+
+import React from "react";
 import Image from "next/image";
+import { motion } from "framer-motion";
+import Header from "./components/header";
+import HardSkills from "./components/hard-skills";
+import Experience from "./components/experience";
+import CallToAction from "./components/call-to-action";
+import SocialLinks from "./components/social-links";
 
-export default function Home() {
+export default function HomePage() {
+  const [hardSkills, setHardSkills] = React.useState([]);
+
+  React.useEffect(() => {
+    fetch("/api/hard-skills")
+      .then(res => res.json())
+      .then(data => setHardSkills(data));
+  }, []);
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <motion.div 
+      className="bg-[var(--background)] p-2 sm:p-4 w-full max-w-[600px] mx-auto"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
+      <Header />
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+      <motion.section 
+        className="rounded-2xl bg-[var(--cards)] w-full shadow-sm mt-2 pb-2"
+        initial={{ y: 20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+      >
+        <div className="flex items-center justify-between p-4 sm:p-6 w-full">
+          <motion.div 
+            className="flex items-center"
+            initial={{ x: -20, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+            <motion.div 
+              className="w-4 h-4 bg-[var(--primary)] rounded-full mr-2"
+              animate={{ 
+                scale: [1, 1.2, 1],
+                boxShadow: [
+                  "0 0 0 rgba(var(--primary-rgb), 0.4)",
+                  "0 0 10px rgba(var(--primary-rgb), 0.8)",
+                  "0 0 0 rgba(var(--primary-rgb), 0.4)"
+                ]
+              }}
+              transition={{ 
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            <span className="font-bold text-sm sm:text-lg">Frontend Developer</span>
+          </motion.div>
+          <motion.div 
+            className="flex items-center"
+            initial={{ x: 20, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
           >
-            Read our docs
-          </a>
+            <motion.div 
+              className="w-4 h-4 bg-[var(--positive-50)] rounded-full mr-2 flex items-center"
+              animate={{ 
+                scale: [1, 1.1, 1],
+                boxShadow: [
+                  "0 0 0 rgba(var(--positive-rgb), 0.4)",
+                  "0 0 10px rgba(var(--positive-rgb), 0.8)",
+                  "0 0 0 rgba(var(--positive-rgb), 0.4)"
+                ]
+              }}
+              transition={{ 
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            >
+              <motion.div 
+                className="w-2 h-2 bg-[var(--positive)] rounded-full m-auto"
+                animate={{ 
+                  scale: [1, 1.3, 1],
+                  opacity: [0.8, 1, 0.8]
+                }}
+                transition={{ 
+                  duration: 1.5,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              />
+            </motion.div>
+            <span className="font-bold text-sm sm:text-lg">Open to Work</span>
+          </motion.div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+
+        <div className="flex items-center justify-between p-4 sm:p-6 w-full">
+          <motion.div 
+            className="text-2xl sm:text-2xl font-bold"
+            initial={{ x: -20, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+          >
+            <motion.span 
+              className="flex items-center"
+              whileHover={{ scale: 1.05 }}
+            >
+              Hello!
+              <motion.div
+                whileHover={{ rotate: 360 }}
+                transition={{ duration: 0.5 }}
+              >
+                <Image 
+                  src="/hello.png" 
+                  alt="Hello" 
+                  width={20}
+                  height={20}
+                  className="ml-2 sm:w-6 sm:h-6"
+                  priority
+                />
+              </motion.div>
+            </motion.span>
+            <motion.div
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+            >
+              I am Danylo
+              <br />
+              — developer
+              <br />
+              with 3+ years of
+              <br />
+              experience.
+            </motion.div>
+          </motion.div>
+
+          <motion.div 
+            className="w-32 h-32 sm:w-40 sm:h-40 bg-[var(--primary-50)] rounded-full flex items-center justify-center"
+            initial={{ scale: 0, rotate: -180 }}
+            animate={{ scale: 1, rotate: 0 }}
+            transition={{ 
+              type: "spring",
+              stiffness: 260,
+              damping: 20,
+              delay: 0.6
+            }}
+            whileHover={{ 
+              scale: 1.05,
+              rotate: 5,
+              transition: { duration: 0.3 }
+            }}
+          >
+            <motion.div 
+              className="w-28 h-28 sm:w-36 sm:h-36 bg-[var(--primary)] rounded-full overflow-hidden"
+              whileHover={{ scale: 1.1 }}
+              transition={{ duration: 0.3 }}
+            >
+              <Image 
+                src="/face.webp" 
+                alt="Face" 
+                width={144} 
+                height={144}
+                priority
+                className="w-full h-full object-cover"
+              />
+            </motion.div>
+          </motion.div>
+        </div>
+
+        <HardSkills hardSkills={hardSkills} />
+        <Experience />
+        <CallToAction />
+        <SocialLinks />
+      </motion.section>
+    </motion.div>
   );
 }
