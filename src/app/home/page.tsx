@@ -8,9 +8,16 @@ import HardSkills from "./components/hard-skills";
 import Experience from "./components/experience";
 import CallToAction from "./components/call-to-action";
 import SocialLinks from "./components/social-links";
-import { hardSkills } from "../api/hard-skills/route";
 
 export default function HomePage() {
+  const [hardSkills, setHardSkills] = React.useState([]);
+
+  React.useEffect(() => {
+    fetch("/api/hard-skills")
+      .then(res => res.json())
+      .then(data => setHardSkills(data));
+  }, []);
+
   return (
     <motion.div 
       className="bg-[var(--background)] p-2 sm:p-4 w-full max-w-[600px] mx-auto"

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-export const hardSkills = [
+const hardSkills = [
   {
     title: "Frontend Development",
     description: "JS, TS, Vue, React, Next.js, Vuetify, Tailwind",
