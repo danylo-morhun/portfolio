@@ -1,40 +1,26 @@
-"use client";
-
-import React, { useState, useEffect } from "react";
+import React from "react";
+import Image from "next/image";
 import Header from "./components/header";
-import HardSkills, { Skill } from "./components/hard-skills";
+import HardSkills from "./components/hard-skills";
+import Experience from "./components/experience";
+import CallToAction from "./components/call-to-action";
+import SocialLinks from "./components/social-links";
+import { hardSkills } from "../api/hard-skills/route";
 
-const Home: React.FC = () => {
-  const [hardSkills, setHardSkills] = useState<Skill[]>([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await fetch("/api/hard-skills");
-        const data = await res.json();
-        console.log("Fetched data:", data); // Add this line to log the fetched data
-        setHardSkills(data); // Adjust this line if the data structure is different
-      } catch (error) {
-        console.error("Error fetching hard skills:", error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
+export default function Home() {
   return (
-    <div className="bg-(--background) p-2 w-140 m-auto">
+    <div className="bg-[var(--background)] p-2 w-140 m-auto">
       <Header />
 
-      <section className="rounded-2xl bg-(--cards) w-full shadow-sm mt-2 pb-2">
+      <section className="rounded-2xl bg-[var(--cards)] w-full shadow-sm mt-2 pb-2">
         <div className="flex items-center justify-between p-6 w-full">
           <div className="flex items-center">
-            <div className="w-4 h-4 bg-(--primary) rounded-full mr-2"></div>
+            <div className="w-4 h-4 bg-[var(--primary)] rounded-full mr-2"></div>
             <span className="font-bold text-lg">Frontend Developer</span>
           </div>
           <div className="flex items-center">
-            <div className="w-4 h-4 bg-(--positive-50) rounded-full mr-2 flex items-center">
-              <div className="w-2 h-2 bg-(--positive) rounded-full m-auto"></div>
+            <div className="w-4 h-4 bg-[var(--positive-50)] rounded-full mr-2 flex items-center">
+              <div className="w-2 h-2 bg-[var(--positive)] rounded-full m-auto"></div>
             </div>
             <span className="font-bold text-lg">Open to Work</span>
           </div>
@@ -44,7 +30,14 @@ const Home: React.FC = () => {
           <div>
             <span className="flex items-center">
               Hello!
-              <img src="hello.png" alt="Hello" width={24} className="ml-2" />
+              <Image 
+                src="/hello.png" 
+                alt="Hello" 
+                width={24} 
+                height={24} 
+                className="ml-2"
+                priority
+              />
             </span>
             I am Danylo
             <br />
@@ -55,21 +48,24 @@ const Home: React.FC = () => {
             experience.
           </div>
 
-          <div className="w-40 h-40 bg-(--primary-50) rounded-full mr-2 flex items-center">
-            <div className="w-36 h-36 bg-(--primary) rounded-full m-auto">
-              <img src="face.webp" alt="Face" />
+          <div className="w-40 h-40 bg-[var(--primary-50)] rounded-full mr-2 flex items-center">
+            <div className="w-36 h-36 bg-[var(--primary)] rounded-full m-auto overflow-hidden">
+              <Image 
+                src="/face.webp" 
+                alt="Face" 
+                width={144} 
+                height={144}
+                priority
+              />
             </div>
           </div>
         </div>
 
-        {hardSkills.length > 0 ? (
-          <HardSkills hardSkills={hardSkills} />
-        ) : (
-          <p>Loading hard skills...</p>
-        )}
+        <HardSkills hardSkills={hardSkills} />
+        <Experience />
+        <CallToAction />
+        <SocialLinks />
       </section>
     </div>
   );
-};
-
-export default Home;
+}
