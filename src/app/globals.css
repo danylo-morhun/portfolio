@@ -10,7 +10,27 @@
   --positive-50: #72e58580;
   --primary: #ecc053;
   --primary-50: #ecc053b3;
+  --on-primary: #333333;
   --font-space-grotesk: "Space Grotesk", sans-serif;
+}
+
+[data-theme="dark"] {
+  --background: #1a1a1a;
+  --foreground: #ffffff;
+  --foreground-50: #aaaaaa;
+  --cards: #2a2a2a;
+  --positive: #72e585;
+  --positive-50: #72e58580;
+  --primary: #ecc053;
+  --primary-50: #ecc053b3;
+  --on-primary: #1a1a1a;
+}
+
+* {
+  transition: background-color 0.3s ease,
+              color 0.3s ease,
+              border-color 0.3s ease,
+              box-shadow 0.3s ease;
 }
 
 body {
