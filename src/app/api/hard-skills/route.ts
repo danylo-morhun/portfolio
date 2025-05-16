@@ -33,14 +33,14 @@ const hardSkills = [
     id: 5,
     title: 'Build Tools',
     abbr: 'BT',
-    description: 'Webpack, Vite, Turbopack',
+    description: 'Docker, Webpack, Vite, Turbopack',
     color: '#D283FF',
   },
   {
     id: 6,
     title: 'Version Control',
     abbr: 'VC',
-    description: 'Git (GitLab, GitHub), GitLab CI/CD, GitHub Actions, Docker',
+    description: 'Git (GitLab, GitHub), GitLab CI/CD, GitHub Actions',
     color: '#42C5FF',
   },
   {
