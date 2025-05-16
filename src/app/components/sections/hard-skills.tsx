@@ -156,7 +156,9 @@ export default function HardSkills() {
                 duration: 0.4,
                 ease: 'easeInOut',
               }}
-              className="w-full bg-[var(--cards)] mt-2 rounded-lg p-4 flex items-center blur-[1px]"
+              className="w-full bg-[var(--cards)] mt-2 rounded-lg p-4 flex items-center blur-[1px] cursor-pointer"
+              onClick={() => setShowAll(true)}
+              whileHover={{ opacity: 0.6, scale: 1.02 }}
             >
               <motion.div
                 className="relative flex-shrink-0 w-16 h-16 mr-4"
