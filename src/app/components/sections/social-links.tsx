@@ -1,20 +1,20 @@
-"use client";
+'use client';
 
 import React from 'react';
-import { RiLinkedinFill, RiFacebookFill, RiInstagramLine } from 'react-icons/ri';
+import { RiLinkedinFill, RiGithubFill, RiTelegramFill } from 'react-icons/ri';
 import { motion } from 'framer-motion';
 
 const SocialLinks: React.FC = () => {
   return (
     <div className="m-2">
       <div className="bg-[var(--background)] rounded-lg p-4 flex items-center justify-between">
-        <motion.div 
+        <motion.div
           className="flex items-center"
           initial={{ x: -20, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.3 }}
         >
-          <motion.div 
+          <motion.div
             className="w-4 h-4 bg-[var(--primary)] rounded-full mr-2"
             animate={{ scale: [1, 1.2, 1] }}
             transition={{ duration: 2, repeat: Infinity }}
@@ -26,19 +26,16 @@ const SocialLinks: React.FC = () => {
             href="https://www.linkedin.com/in/danylo-morhun/"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-[var(--primary)] w-10 h-10 rounded-full flex items-center justify-center text-[var(--foreground)] relative overflow-hidden"
-            whileHover={{ 
-              scale: 1.1, 
-              rotate: 360,
-              backgroundColor: "var(--primary-50)",
-              transition: { duration: 0.3 }
+            className="bg-[var(--primary)] w-10 h-10 rounded-full flex items-center justify-center text-[var(--on-primary)] relative overflow-hidden cursor-pointer"
+            whileHover={{
+              scale: 1.1,
+              rotate: -15,
+              backgroundColor: 'var(--primary-50)',
+              transition: { duration: 0.3 },
             }}
             whileTap={{ scale: 0.9 }}
           >
-            <motion.div
-              className="relative z-10"
-              whileHover={{ color: "var(--foreground)" }}
-            >
+            <motion.div className="relative z-10" whileHover={{ color: 'var(--on-primary)' }}>
               <RiLinkedinFill size={20} />
             </motion.div>
             <motion.div
@@ -48,23 +45,20 @@ const SocialLinks: React.FC = () => {
             />
           </motion.a>
           <motion.a
-            href="https://www.facebook.com/danylo.morhun/"
+            href="https://github.com/danylo-morhun"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-[var(--primary)] w-10 h-10 rounded-full flex items-center justify-center text-[var(--foreground)] relative overflow-hidden"
-            whileHover={{ 
-              scale: 1.1, 
-              rotate: 360,
-              backgroundColor: "var(--primary-50)",
-              transition: { duration: 0.3 }
+            className="bg-[var(--primary)] w-10 h-10 rounded-full flex items-center justify-center text-[var(--on-primary)] relative overflow-hidden cursor-pointer"
+            whileHover={{
+              scale: 1.1,
+              rotate: 15,
+              backgroundColor: 'var(--primary-50)',
+              transition: { duration: 0.3 },
             }}
             whileTap={{ scale: 0.9 }}
           >
-            <motion.div
-              className="relative z-10"
-              whileHover={{ color: "var(--foreground)" }}
-            >
-              <RiFacebookFill size={20} />
+            <motion.div className="relative z-10" whileHover={{ color: 'var(--on-primary)' }}>
+              <RiGithubFill size={20} />
             </motion.div>
             <motion.div
               className="absolute inset-0 bg-[var(--primary)] opacity-0"
@@ -73,23 +67,20 @@ const SocialLinks: React.FC = () => {
             />
           </motion.a>
           <motion.a
-            href="https://www.instagram.com/danylo.morhun/"
+            href="https://t.me/danylo_morhun"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-[var(--primary)] w-10 h-10 rounded-full flex items-center justify-center text-[var(--foreground)] relative overflow-hidden"
-            whileHover={{ 
-              scale: 1.1, 
-              rotate: 360,
-              backgroundColor: "var(--primary-50)",
-              transition: { duration: 0.3 }
+            className="bg-[var(--primary)] w-10 h-10 rounded-full flex items-center justify-center text-[var(--on-primary)] relative overflow-hidden cursor-pointer"
+            whileHover={{
+              scale: 1.1,
+              rotate: -15,
+              backgroundColor: 'var(--primary-50)',
+              transition: { duration: 0.3 },
             }}
             whileTap={{ scale: 0.9 }}
           >
-            <motion.div
-              className="relative z-10"
-              whileHover={{ color: "var(--foreground)" }}
-            >
-              <RiInstagramLine size={20} />
+            <motion.div className="relative z-10" whileHover={{ color: 'var(--on-primary)' }}>
+              <RiTelegramFill size={20} />
             </motion.div>
             <motion.div
               className="absolute inset-0 bg-[var(--primary)] opacity-0"
@@ -103,4 +94,4 @@ const SocialLinks: React.FC = () => {
   );
 };
 
-export default SocialLinks; 
+export default SocialLinks;
