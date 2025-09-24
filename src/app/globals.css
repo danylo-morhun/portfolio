@@ -2,24 +2,24 @@
 /* @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"); */
 
 :root {
-  /* Light theme - Liquid Glass with original colors */
-  --background: linear-gradient(135deg, #e7e7e7 0%, #f0f0f0 100%);
-  --background-solid: #e7e7e7;
-  --foreground: #333333;
-  --foreground-50: #777777;
-  --foreground-20: #aaaaaa;
-  --cards: rgba(247, 247, 247, 0.25);
-  --cards-solid: rgba(247, 247, 247, 0.9);
-  --cards-hover: rgba(247, 247, 247, 0.35);
+  /* Light theme - Liquid Glass with fluid colors */
+  --background: radial-gradient(circle at 20% 20%, #ecc053 0%, transparent 50%), radial-gradient(circle at 80% 80%, #fbbf24 0%, transparent 50%), radial-gradient(circle at 50% 50%, #f8fafc 0%, #e2e8f0 30%, #cbd5e1 60%, #94a3b8 100%);
+  --background-solid: #f8fafc;
+  --foreground: #1e293b;
+  --foreground-50: #64748b;
+  --foreground-20: #cbd5e1;
+  --cards: rgba(255, 255, 255, 0.3);
+  --cards-solid: rgba(255, 255, 255, 0.95);
+  --cards-hover: rgba(255, 255, 255, 0.4);
   --positive: #ff8c42;
   --positive-50: rgba(255, 140, 66, 0.5);
   --primary: #ecc053;
   --primary-50: rgba(236, 192, 83, 0.5);
   --primary-20: rgba(236, 192, 83, 0.2);
-  --on-primary: #333333;
-  --glass-border: rgba(255, 255, 255, 0.2);
-  --glass-shadow: 0 8px 32px 0 rgba(51, 51, 51, 0.1);
-  --glass-shadow-hover: 0 12px 40px 0 rgba(51, 51, 51, 0.15);
+  --on-primary: #1e293b;
+  --glass-border: rgba(255, 255, 255, 0.3);
+  --glass-shadow: 0 8px 32px 0 rgba(148, 163, 184, 0.2);
+  --glass-shadow-hover: 0 12px 40px 0 rgba(148, 163, 184, 0.3);
   --font-space-grotesk: "Space Grotesk", sans-serif;
   
   /* Animation variables */
@@ -79,6 +79,12 @@ body {
   filter: blur(100px);
   opacity: 0;
   mix-blend-mode: multiply;
+}
+
+/* Light theme liquid mouse effect */
+[data-theme="light"] .mouse-blot {
+  background: radial-gradient(circle, rgba(148, 163, 184, 0.3) 0%, rgba(148, 163, 184, 0.15) 30%, rgba(148, 163, 184, 0.08) 60%, transparent 80%);
+  mix-blend-mode: overlay;
 }
 
 /* Liquid Glass base classes */
@@ -179,6 +185,16 @@ body::before {
   z-index: -1;
 }
 
+/* Light theme specific liquid particles */
+[data-theme="light"] body::before {
+  background-image: 
+    radial-gradient(circle at 15% 85%, rgba(236, 192, 83, 0.15) 0%, transparent 60%),
+    radial-gradient(circle at 85% 15%, rgba(255, 140, 66, 0.12) 0%, transparent 60%),
+    radial-gradient(circle at 50% 50%, rgba(148, 163, 184, 0.08) 0%, transparent 60%),
+    radial-gradient(circle at 30% 70%, rgba(236, 192, 83, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 70% 30%, rgba(255, 140, 66, 0.08) 0%, transparent 50%);
+}
+
 /* Scrollbar styling */
 ::-webkit-scrollbar {
   width: 8px;
@@ -226,7 +242,7 @@ body::before {
 
 @media (prefers-color-scheme: light) {
   :root {
-    --background: linear-gradient(135deg, #e7e7e7 0%, #f0f0f0 100%);
-    --background-solid: #e7e7e7;
+    --background: radial-gradient(circle at 20% 20%, #ecc053 0%, transparent 50%), radial-gradient(circle at 80% 80%, #fbbf24 0%, transparent 50%), radial-gradient(circle at 50% 50%, #f8fafc 0%, #e2e8f0 30%, #cbd5e1 60%, #94a3b8 100%);
+    --background-solid: #f8fafc;
   }
 }
