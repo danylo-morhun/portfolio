@@ -22,8 +22,8 @@ export const MouseBlot = () => {
         currentX += (mouseX - currentX) * 0.05; // Very slow lag - 0.05 for smooth following
         currentY += (mouseY - currentY) * 0.05;
         
-        blotRef.current.style.transform = `translate(${currentX - 600}px, ${currentY - 600}px)`;
-        blotRef.current.style.opacity = '1';
+        blotRef.current.style.transform = `translate(${currentX - 800}px, ${currentY - 800}px)`;
+        blotRef.current.style.opacity = '0.9';
       }
       requestAnimationFrame(animate);
     };

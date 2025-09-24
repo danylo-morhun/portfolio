@@ -70,21 +70,22 @@ body {
 /* Mouse following dark area */
 .mouse-blot {
   position: fixed;
-  width: 1200px;
-  height: 1200px;
+  width: 1600px;
+  height: 1600px;
   background: radial-gradient(circle, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.1) 30%, rgba(0, 0, 0, 0.05) 60%, transparent 80%);
   border-radius: 50%;
   pointer-events: none;
   z-index: 1;
-  filter: blur(100px);
+  filter: blur(120px);
   opacity: 0;
   mix-blend-mode: multiply;
 }
 
 /* Light theme liquid mouse effect */
 [data-theme="light"] .mouse-blot {
-  background: radial-gradient(circle, rgba(148, 163, 184, 0.3) 0%, rgba(148, 163, 184, 0.15) 30%, rgba(148, 163, 184, 0.08) 60%, transparent 80%);
-  mix-blend-mode: overlay;
+  background: radial-gradient(circle, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.15) 25%, rgba(0, 0, 0, 0.08) 50%, rgba(0, 0, 0, 0.03) 75%, transparent 100%);
+  mix-blend-mode: multiply;
+  filter: blur(100px);
 }
 
 /* Liquid Glass base classes */
