@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "./context/ThemeContext";
+import { MouseBlot } from "./components/ui/MouseBlot";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -34,6 +35,7 @@ export default function RootLayout({
       <body
         className={`${spaceGrotesk.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <MouseBlot />
         <ThemeProvider>
           {children}
         </ThemeProvider>

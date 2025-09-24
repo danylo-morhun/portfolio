@@ -11,8 +11,8 @@
   --cards: rgba(247, 247, 247, 0.25);
   --cards-solid: rgba(247, 247, 247, 0.9);
   --cards-hover: rgba(247, 247, 247, 0.35);
-  --positive: #72e585;
-  --positive-50: rgba(114, 229, 133, 0.5);
+  --positive: #ff8c42;
+  --positive-50: rgba(255, 140, 66, 0.5);
   --primary: #ecc053;
   --primary-50: rgba(236, 192, 83, 0.5);
   --primary-20: rgba(236, 192, 83, 0.2);
@@ -37,8 +37,8 @@
   --cards: rgba(42, 42, 42, 0.4);
   --cards-solid: rgba(42, 42, 42, 0.9);
   --cards-hover: rgba(42, 42, 42, 0.6);
-  --positive: #72e585;
-  --positive-50: rgba(114, 229, 133, 0.5);
+  --positive: #ff8c42;
+  --positive-50: rgba(255, 140, 66, 0.5);
   --primary: #ecc053;
   --primary-50: rgba(236, 192, 83, 0.5);
   --primary-20: rgba(236, 192, 83, 0.2);
@@ -65,6 +65,20 @@ body {
   min-height: 100vh;
   position: relative;
   overflow-x: hidden;
+}
+
+/* Mouse following dark area */
+.mouse-blot {
+  position: fixed;
+  width: 1200px;
+  height: 1200px;
+  background: radial-gradient(circle, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.1) 30%, rgba(0, 0, 0, 0.05) 60%, transparent 80%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+  filter: blur(100px);
+  opacity: 0;
+  mix-blend-mode: multiply;
 }
 
 /* Liquid Glass base classes */
@@ -159,7 +173,7 @@ body::before {
   height: 100%;
   background-image: 
     radial-gradient(circle at 20% 80%, var(--primary-20) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, var(--positive-50) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, var(--primary-20) 0%, transparent 50%),
     radial-gradient(circle at 40% 40%, var(--primary-20) 0%, transparent 50%);
   pointer-events: none;
   z-index: -1;
@@ -212,7 +226,7 @@ body::before {
 
 @media (prefers-color-scheme: light) {
   :root {
-    --background: linear-gradient(135deg, #ffffff 0%, #f7f7f7 100%);
-    --background-solid: #ffffff;
+    --background: linear-gradient(135deg, #e7e7e7 0%, #f0f0f0 100%);
+    --background-solid: #e7e7e7;
   }
 }
