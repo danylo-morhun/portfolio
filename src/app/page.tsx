@@ -14,7 +14,7 @@ import { FADE_IN_ANIMATION, SLIDE_UP_ANIMATION } from '@/app/lib/constants';
 export default function HomePage() {
   return (
     <motion.div
-      className="p-2 sm:p-4 w-full max-w-[600px] mx-auto relative z-10"
+      className="pt-4 px-2 pb-2 sm:p-4 w-full max-w-[600px] mx-auto relative z-10"
       variants={FADE_IN_ANIMATION}
       initial="hidden"
       animate="visible"
