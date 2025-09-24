@@ -122,7 +122,7 @@ export default function HomePage() {
           </motion.div>
 
           <motion.div
-            className="glass w-32 h-32 sm:w-40 sm:h-40 bg-[var(--primary-50)] rounded-full flex items-center justify-center"
+            className="avatar-glass w-32 h-32 sm:w-40 sm:h-40 rounded-full flex items-center justify-center"
             initial={{ scale: 0, rotate: -180 }}
             animate={{ scale: 1, rotate: 0 }}
             transition={{
