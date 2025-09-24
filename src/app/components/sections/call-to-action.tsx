@@ -16,7 +16,7 @@ const CallToAction: React.FC = () => {
   return (
     <motion.div
       id="contact"
-      className="m-2 bg-[var(--cards)] rounded-xl px-4 pt-4 pb-4 text-center"
+      className="m-2 rounded-xl px-4 pt-4 pb-4 text-center"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
@@ -40,10 +40,10 @@ const CallToAction: React.FC = () => {
       <div className="flex gap-4 justify-center">
         <motion.button
           onClick={handleCopyEmail}
-          className="border-2 border-solid border-[var(--primary)] text-[var(--foreground)] font-bold py-2 px-6 rounded-xl flex items-center gap-2 relative overflow-hidden cursor-pointer"
+          className="glass-inside border-2 border-solid border-[var(--glass-border)] text-[var(--foreground)] font-bold py-2 px-6 rounded-2xl flex items-center gap-2 relative overflow-hidden cursor-pointer"
           whileHover={{
             scale: 1.05,
-            backgroundColor: 'var(--cards)',
+            backgroundColor: 'var(--cards-hover)',
             borderColor: 'var(--primary)',
             transition: { duration: 0.2 },
           }}

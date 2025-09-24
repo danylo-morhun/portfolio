@@ -11,15 +11,19 @@ const Header: React.FC = () => {
 
   return (
     <motion.header
-      className="flex items-center justify-between rounded-2xl bg-[var(--cards)] w-full h-16 px-6 shadow-sm"
+      className="glass flex items-center justify-between rounded-3xl w-full h-16 px-6 liquid-float"
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5 }}
+      whileHover={{ 
+        scale: 1.02,
+        transition: { duration: 0.3, ease: "easeOut" }
+      }}
     >
       <div className="flex items-center gap-2">
         <Link href="/">
           <motion.div
-            className="rounded-full bg-[var(--primary)] p-2 font-bold w-9 h-9 flex items-center justify-center text-[var(--on-primary)]"
+            className="glass-inside rounded-2xl bg-[var(--primary)] p-2 font-bold w-9 h-9 flex items-center justify-center text-[var(--on-primary)]"
             whileHover={{
               scale: 1.1,
               rotate: 360,
@@ -62,7 +66,7 @@ const Header: React.FC = () => {
         </motion.button>
         <Link href="/#contact">
           <motion.button
-            className="bg-[var(--primary)] text-[var(--on-primary)] font-bold py-1.5 px-3 rounded-xl relative overflow-hidden border-2 border-[var(--foreground)] transition-colors cursor-pointer"
+            className="glass-inside bg-[var(--primary)] text-[var(--on-primary)] font-bold py-1.5 px-3 rounded-2xl relative overflow-hidden border-2 border-[var(--glass-border)] transition-colors cursor-pointer"
             whileHover={{
               scale: 1.05,
               backgroundColor: 'var(--primary-50)',

@@ -27,7 +27,7 @@ const hardSkills = [
     title: 'Backend Basics',
     abbr: 'BE',
     description: 'Python, Django, Django REST',
-    color: '#1687FF',
+    color: '#FFA726',
   },
   {
     id: 5,
@@ -41,7 +41,7 @@ const hardSkills = [
     title: 'Version Control',
     abbr: 'VC',
     description: 'Git (GitLab, GitHub), GitLab CI/CD, GitHub Actions',
-    color: '#42C5FF',
+    color: '#FFB74D',
   },
   {
     id: 7,

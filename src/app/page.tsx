@@ -14,7 +14,7 @@ import { FADE_IN_ANIMATION, SLIDE_UP_ANIMATION } from '@/app/lib/constants';
 export default function HomePage() {
   return (
     <motion.div
-      className="bg-[var(--background)] p-2 sm:p-4 w-full max-w-[600px] mx-auto"
+      className="p-2 sm:p-4 w-full max-w-[600px] mx-auto relative"
       variants={FADE_IN_ANIMATION}
       initial="hidden"
       animate="visible"
@@ -34,9 +34,9 @@ export default function HomePage() {
               animate={{
                 scale: [1, 1.2, 1],
                 boxShadow: [
-                  '0 0 0 rgba(var(--primary-rgb), 0.4)',
-                  '0 0 10px rgba(var(--primary-rgb), 0.8)',
-                  '0 0 0 rgba(var(--primary-rgb), 0.4)',
+                  '0 0 0 var(--primary-20)',
+                  '0 0 20px var(--primary-50)',
+                  '0 0 0 var(--primary-20)',
                 ],
               }}
               transition={{
@@ -58,9 +58,9 @@ export default function HomePage() {
               animate={{
                 scale: [1, 1.1, 1],
                 boxShadow: [
-                  '0 0 0 rgba(var(--positive-rgb), 0.4)',
-                  '0 0 10px rgba(var(--positive-rgb), 0.8)',
-                  '0 0 0 rgba(var(--positive-rgb), 0.4)',
+                  '0 0 0 var(--positive-50)',
+                  '0 0 20px var(--positive)',
+                  '0 0 0 var(--positive-50)',
                 ],
               }}
               transition={{
@@ -122,7 +122,7 @@ export default function HomePage() {
           </motion.div>
 
           <motion.div
-            className="w-32 h-32 sm:w-40 sm:h-40 bg-[var(--primary-50)] rounded-full flex items-center justify-center"
+            className="glass w-32 h-32 sm:w-40 sm:h-40 bg-[var(--primary-50)] rounded-full flex items-center justify-center"
             initial={{ scale: 0, rotate: -180 }}
             animate={{ scale: 1, rotate: 0 }}
             transition={{
@@ -138,7 +138,7 @@ export default function HomePage() {
             }}
           >
             <motion.div
-              className="w-28 h-28 sm:w-36 sm:h-36 bg-[var(--primary)] rounded-full overflow-hidden"
+              className="glass-strong w-28 h-28 sm:w-36 sm:h-36 bg-[var(--primary)] rounded-full overflow-hidden"
               whileHover={{ scale: 1.1 }}
               transition={{ duration: 0.3 }}
             >

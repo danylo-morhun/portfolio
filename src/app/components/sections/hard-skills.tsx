@@ -35,13 +35,13 @@ export default function HardSkills() {
   }, []);
 
   const SkeletonSkill = () => (
-    <div className="w-full bg-[var(--cards)] mt-2 rounded-lg p-4 flex items-center animate-pulse">
+    <div className="glass-inside w-full mt-2 rounded-2xl p-4 flex items-center animate-pulse">
       <div className="flex-shrink-0 w-16 h-16 mr-4">
-        <div className="w-16 h-16 rounded-full bg-[var(--foreground-10)]" />
+        <div className="w-16 h-16 rounded-full bg-[var(--foreground-20)]" />
       </div>
       <div className="flex-1">
-        <div className="h-6 w-3/4 bg-[var(--foreground-10)] rounded mb-2" />
-        <div className="h-4 w-1/2 bg-[var(--foreground-10)] rounded" />
+        <div className="h-6 w-3/4 bg-[var(--foreground-20)] rounded mb-2" />
+        <div className="h-4 w-1/2 bg-[var(--foreground-20)] rounded" />
       </div>
     </div>
   );
@@ -51,7 +51,7 @@ export default function HardSkills() {
   const peekSkill = !showAll && hasMoreSkills ? hardSkills[3] : null;
 
   return (
-    <div className="m-2 bg-[var(--background)] rounded-xl px-4 pt-4 pb-4">
+    <div className="m-2 rounded-xl px-4 pt-4 pb-4">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center">
           <motion.div
@@ -63,10 +63,10 @@ export default function HardSkills() {
         </div>
         {hasMoreSkills && (
           <motion.button
-            className="bg-none border-2 border-solid border-[var(--border)] text-[var(--foreground)] font-bold px-4 rounded-lg relative overflow-hidden cursor-pointer"
+            className="glass-inside border-2 border-solid border-[var(--glass-border)] text-[var(--foreground)] font-bold px-4 rounded-2xl relative overflow-hidden cursor-pointer"
             whileHover={{
               scale: 1.05,
-              backgroundColor: 'var(--cards)',
+              backgroundColor: 'var(--cards-hover)',
               borderColor: 'var(--primary)',
               transition: { duration: 0.2 },
             }}
@@ -106,7 +106,7 @@ export default function HardSkills() {
                   damping: 20,
                 }}
                 whileHover={{ scale: 1.02 }}
-                className="w-full bg-[var(--cards)] mt-2 rounded-lg p-4 flex items-center"
+                className="glass-inside glass-hover w-full mt-2 rounded-2xl p-4 flex items-center"
               >
                 <motion.div
                   className="relative flex-shrink-0 w-16 h-16 mr-4"
@@ -119,7 +119,7 @@ export default function HardSkills() {
                   />
                   <div className="relative w-full h-full rounded-full flex items-center justify-center">
                     <motion.div
-                      className="text-xl w-12 h-12 rounded-full font-bold flex items-center justify-center text-white relative overflow-hidden"
+                      className="glass-inside text-xl w-12 h-12 rounded-full font-bold flex items-center justify-center text-white relative overflow-hidden"
                       style={{ backgroundColor: skill.color }}
                       whileHover={{ scale: 1.1 }}
                     >
@@ -156,7 +156,7 @@ export default function HardSkills() {
                 duration: 0.4,
                 ease: 'easeInOut',
               }}
-              className="w-full bg-[var(--cards)] mt-2 rounded-lg p-4 flex items-center blur-[1px] cursor-pointer"
+              className="glass-inside w-full mt-2 rounded-2xl p-4 flex items-center blur-[1px] cursor-pointer"
               onClick={() => setShowAll(true)}
               whileHover={{ opacity: 0.6, scale: 1.02 }}
             >

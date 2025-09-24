@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 const SocialLinks: React.FC = () => {
   return (
     <div className="m-2">
-      <div className="bg-[var(--background)] rounded-lg p-4 flex items-center justify-between">
+      <div className="glass-inside rounded-2xl p-4 flex items-center justify-between">
         <motion.div
           className="flex items-center"
           initial={{ x: -20, opacity: 0 }}
@@ -26,7 +26,7 @@ const SocialLinks: React.FC = () => {
             href="https://www.linkedin.com/in/danylo-morhun/"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-[var(--primary)] w-10 h-10 rounded-full flex items-center justify-center text-[var(--on-primary)] relative overflow-hidden cursor-pointer"
+            className="glass-inside bg-[var(--primary)] w-10 h-10 rounded-2xl flex items-center justify-center text-[var(--on-primary)] relative overflow-hidden cursor-pointer"
             whileHover={{
               scale: 1.1,
               rotate: -15,
@@ -48,7 +48,7 @@ const SocialLinks: React.FC = () => {
             href="https://github.com/danylo-morhun"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-[var(--primary)] w-10 h-10 rounded-full flex items-center justify-center text-[var(--on-primary)] relative overflow-hidden cursor-pointer"
+            className="glass-inside bg-[var(--primary)] w-10 h-10 rounded-2xl flex items-center justify-center text-[var(--on-primary)] relative overflow-hidden cursor-pointer"
             whileHover={{
               scale: 1.1,
               rotate: 15,
@@ -70,7 +70,7 @@ const SocialLinks: React.FC = () => {
             href="https://t.me/danylo_morhun"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-[var(--primary)] w-10 h-10 rounded-full flex items-center justify-center text-[var(--on-primary)] relative overflow-hidden cursor-pointer"
+            className="glass-inside bg-[var(--primary)] w-10 h-10 rounded-2xl flex items-center justify-center text-[var(--on-primary)] relative overflow-hidden cursor-pointer"
             whileHover={{
               scale: 1.1,
               rotate: -15,

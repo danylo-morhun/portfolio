@@ -2,46 +2,217 @@
 /* @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"); */
 
 :root {
-  --background: #e7e7e7;
+  /* Light theme - Liquid Glass with original colors */
+  --background: linear-gradient(135deg, #e7e7e7 0%, #f0f0f0 100%);
+  --background-solid: #e7e7e7;
   --foreground: #333333;
   --foreground-50: #777777;
-  --cards: #f7f7f7;
+  --foreground-20: #aaaaaa;
+  --cards: rgba(247, 247, 247, 0.25);
+  --cards-solid: rgba(247, 247, 247, 0.9);
+  --cards-hover: rgba(247, 247, 247, 0.35);
   --positive: #72e585;
-  --positive-50: #72e58580;
+  --positive-50: rgba(114, 229, 133, 0.5);
   --primary: #ecc053;
-  --primary-50: #ecc053b3;
+  --primary-50: rgba(236, 192, 83, 0.5);
+  --primary-20: rgba(236, 192, 83, 0.2);
   --on-primary: #333333;
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --glass-shadow: 0 8px 32px 0 rgba(51, 51, 51, 0.1);
+  --glass-shadow-hover: 0 12px 40px 0 rgba(51, 51, 51, 0.15);
   --font-space-grotesk: "Space Grotesk", sans-serif;
+  
+  /* Animation variables */
+  --liquid-duration: 0.6s;
+  --liquid-ease: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 [data-theme="dark"] {
-  --background: #1a1a1a;
+  /* Dark theme - Liquid Glass with original colors */
+  --background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+  --background-solid: #1a1a1a;
   --foreground: #ffffff;
   --foreground-50: #aaaaaa;
-  --cards: #2a2a2a;
+  --foreground-20: #666666;
+  --cards: rgba(42, 42, 42, 0.4);
+  --cards-solid: rgba(42, 42, 42, 0.9);
+  --cards-hover: rgba(42, 42, 42, 0.6);
   --positive: #72e585;
-  --positive-50: #72e58580;
+  --positive-50: rgba(114, 229, 133, 0.5);
   --primary: #ecc053;
-  --primary-50: #ecc053b3;
+  --primary-50: rgba(236, 192, 83, 0.5);
+  --primary-20: rgba(236, 192, 83, 0.2);
   --on-primary: #1a1a1a;
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+  --glass-shadow-hover: 0 12px 40px 0 rgba(0, 0, 0, 0.4);
 }
 
 * {
-  transition: background-color 0.3s ease,
-              color 0.3s ease,
-              border-color 0.3s ease,
-              box-shadow 0.3s ease;
+  transition: background-color var(--liquid-duration) var(--liquid-ease),
+              color var(--liquid-duration) var(--liquid-ease),
+              border-color var(--liquid-duration) var(--liquid-ease),
+              box-shadow var(--liquid-duration) var(--liquid-ease),
+              backdrop-filter var(--liquid-duration) var(--liquid-ease),
+              transform var(--liquid-duration) var(--liquid-ease);
 }
 
 body {
-  background-color: var(--background);
+  background: var(--background);
+  background-attachment: fixed;
   color: var(--foreground);
   font-family: var(--font-space-grotesk), system-ui, sans-serif;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Liquid Glass base classes */
+.glass {
+  background: var(--cards);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+}
+
+.glass-hover {
+  transition: all var(--liquid-duration) var(--liquid-ease);
+}
+
+.glass-hover:hover {
+  background: var(--cards-hover);
+  box-shadow: var(--glass-shadow-hover);
+  transform: translateY(-2px);
+}
+
+.glass-strong {
+  background: var(--cards-solid);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+}
+
+.glass-inside {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 4px 16px 0 rgba(31, 38, 135, 0.15);
+}
+
+[data-theme="dark"] .glass-inside {
+  background: rgba(15, 23, 42, 0.2);
+  box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.15);
+}
+
+/* Liquid animations */
+@keyframes liquid-flow {
+  0%, 100% {
+    transform: translateX(0) scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateX(10px) scale(1.05);
+    opacity: 1;
+  }
+}
+
+@keyframes liquid-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px var(--primary-20);
+  }
+  50% {
+    box-shadow: 0 0 40px var(--primary-50);
+  }
+}
+
+@keyframes liquid-float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.liquid-flow {
+  animation: liquid-flow 4s ease-in-out infinite;
+}
+
+.liquid-glow {
+  animation: liquid-glow 3s ease-in-out infinite;
+}
+
+.liquid-float {
+  animation: liquid-float 6s ease-in-out infinite;
+}
+
+/* Background particles effect */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 20% 80%, var(--primary-20) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, var(--positive-50) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, var(--primary-20) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--glass-border);
+  border-radius: 4px;
+  backdrop-filter: blur(10px);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-50);
+}
+
+/* Force primary color application */
+.bg-\[var\(--primary\)\] {
+  background-color: var(--primary) !important;
+}
+
+.text-\[var\(--primary\)\] {
+  color: var(--primary) !important;
+}
+
+.border-\[var\(--primary\)\] {
+  border-color: var(--primary) !important;
+}
+
+/* Debug: Ensure primary color is yellow */
+:root {
+  --primary: #ecc053 !important;
+  --primary-50: rgba(236, 192, 83, 0.5) !important;
+  --primary-20: rgba(236, 192, 83, 0.2) !important;
+}
+
+[data-theme="dark"] {
+  --primary: #ecc053 !important;
+  --primary-50: rgba(236, 192, 83, 0.5) !important;
+  --primary-20: rgba(236, 192, 83, 0.2) !important;
 }
 
 @media (prefers-color-scheme: light) {
   :root {
-    --background: #ffffff;
-    --foreground: #333333;
+    --background: linear-gradient(135deg, #ffffff 0%, #f7f7f7 100%);
+    --background-solid: #ffffff;
   }
 }
