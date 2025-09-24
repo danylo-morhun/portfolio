@@ -15,6 +15,7 @@ export default function HardSkills() {
   const [hardSkills, setHardSkills] = useState<HardSkill[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [showAll, setShowAll] = useState(false);
+  const [expandedSkills, setExpandedSkills] = useState<Set<number>>(new Set());
 
   useEffect(() => {
     const fetchSkills = async () => {
@@ -49,6 +50,27 @@ export default function HardSkills() {
   const displayedSkills = showAll ? hardSkills : hardSkills.slice(0, 3);
   const hasMoreSkills = hardSkills.length > 3;
   const peekSkill = !showAll && hasMoreSkills ? hardSkills[3] : null;
+
+  const toggleSkillExpansion = (skillId: number) => {
+    setExpandedSkills(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(skillId)) {
+        newSet.delete(skillId);
+      } else {
+        newSet.add(skillId);
+      }
+      return newSet;
+    });
+  };
+
+  const truncateDescription = (description: string, maxLength: number = 60) => {
+    if (description.length <= maxLength) return description;
+    return description.substring(0, maxLength) + '...';
+  };
+
+  const isDescriptionLong = (description: string, maxLength: number = 60) => {
+    return description.length > maxLength;
+  };
 
   return (
     <div className="m-2 rounded-xl px-4 pt-4 pb-4">
@@ -132,7 +154,7 @@ export default function HardSkills() {
                     </motion.div>
                   </div>
                 </motion.div>
-                <div className="font-bold min-w-0">
+                <div className="font-bold min-w-0 flex-1">
                   <motion.p className="m-0 text-xl break-words" whileHover={{ color: skill.color }}>
                     {skill.title}
                   </motion.p>
@@ -140,8 +162,24 @@ export default function HardSkills() {
                     className="text-[var(--foreground-50)] font-medium break-words"
                     whileHover={{ color: 'var(--foreground)' }}
                   >
-                    {skill.description}
+                    {expandedSkills.has(skill.id) 
+                      ? skill.description 
+                      : truncateDescription(skill.description)
+                    }
                   </motion.span>
+                  {isDescriptionLong(skill.description) && (
+                    <motion.button
+                      className="ml-2 text-[var(--primary)] font-medium text-sm hover:underline"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        toggleSkillExpansion(skill.id);
+                      }}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      {expandedSkills.has(skill.id) ? 'Show less' : 'Show more'}
+                    </motion.button>
+                  )}
                 </div>
               </motion.div>
             ))}
@@ -180,15 +218,31 @@ export default function HardSkills() {
                 </div>
               </motion.div>
               <motion.div
-                className="font-bold min-w-0"
+                className="font-bold min-w-0 flex-1"
                 initial={{ x: -10, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ duration: 0.4, ease: 'easeInOut' }}
               >
                 <p className="m-0 text-xl break-words">{peekSkill.title}</p>
                 <span className="text-[var(--foreground-50)] font-medium break-words">
-                  {peekSkill.description}
+                  {expandedSkills.has(peekSkill.id) 
+                    ? peekSkill.description 
+                    : truncateDescription(peekSkill.description)
+                  }
                 </span>
+                {isDescriptionLong(peekSkill.description) && (
+                  <motion.button
+                    className="ml-2 text-[var(--primary)] font-medium text-sm hover:underline"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleSkillExpansion(peekSkill.id);
+                    }}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    {expandedSkills.has(peekSkill.id) ? 'Show less' : 'Show more'}
+                  </motion.button>
+                )}
               </motion.div>
             </motion.div>
           )}
