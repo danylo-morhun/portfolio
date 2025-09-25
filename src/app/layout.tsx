@@ -50,14 +50,14 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://danylo-morhun.vercel.app'),
+  metadataBase: new URL('https://www.danylomorhun.com/'),
   alternates: {
     canonical: '/',
   },
   openGraph: {
     title: "Danylo Morhun - Frontend Developer | React, TypeScript, Next.js Expert",
     description: "Experienced Frontend Developer with 3+ years of expertise in React, TypeScript, Next.js, and modern web technologies. Available for freelance and full-time opportunities.",
-    url: 'https://danylo-morhun.vercel.app',
+    url: 'https://www.danylomorhun.com/',
     siteName: 'Danylo Morhun Portfolio',
     images: [
       {
@@ -104,8 +104,8 @@ export default function RootLayout({
     "name": "Danylo Morhun",
     "jobTitle": "Frontend Developer",
     "description": "Experienced Frontend Developer with 3+ years of expertise in React, TypeScript, Next.js, and modern web technologies.",
-    "url": "https://danylo-morhun.vercel.app",
-    "image": "https://danylo-morhun.vercel.app/face.webp",
+    "url": "https://www.danylomorhun.com/",
+    "image": "https://www.danylomorhun.com//face.webp",
     "sameAs": [
       "https://github.com/danylo-morhun",
       "https://linkedin.com/in/danylo-morhun",

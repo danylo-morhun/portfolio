@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://danylo-morhun.vercel.app/sitemap.xml
+Sitemap: https://www.danylomorhun.com//sitemap.xml
 
 # Crawl-delay for respectful crawling
 Crawl-delay: 1
