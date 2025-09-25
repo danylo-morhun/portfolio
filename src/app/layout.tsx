@@ -105,7 +105,7 @@ export default function RootLayout({
     "jobTitle": "Frontend Developer",
     "description": "Experienced Frontend Developer with 3+ years of expertise in React, TypeScript, Next.js, and modern web technologies.",
     "url": "https://www.danylomorhun.com/",
-    "image": "https://www.danylomorhun.com//face.webp",
+    "image": "https://www.danylomorhun.com/face.webp",
     "sameAs": [
       "https://github.com/danylo-morhun",
       "https://linkedin.com/in/danylo-morhun",
