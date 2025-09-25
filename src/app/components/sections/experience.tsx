@@ -8,7 +8,7 @@ import Link from 'next/link';
 const Experience: React.FC = () => {
   return (
     <motion.div
-      className="m-2 bg-[var(--background)] rounded-xl px-4 pt-4 pb-4"
+      className="m-2 rounded-xl px-4 pt-4 pb-4"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
@@ -24,7 +24,7 @@ const Experience: React.FC = () => {
         </div>
         <Link href="/experience">
           <motion.div
-            className="w-full bg-[var(--cards)] mt-2 rounded-lg p-4 flex items-center justify-between"
+            className="glass-inside glass-hover w-full mt-2 rounded-2xl p-4 flex items-center justify-between"
             whileHover={{ scale: 1.02 }}
             transition={{ duration: 0.2 }}
           >
@@ -41,7 +41,7 @@ const Experience: React.FC = () => {
                 className="text-[var(--foreground-50)] font-medium"
                 whileHover={{ color: 'var(--foreground)' }}
               >
-                Dec 2021 - Mar 2025 (3 years 4 months)
+                Dec 2021 - Sept 2025 (3 years 10 months)
               </motion.span>
             </motion.div>
             <motion.div whileHover={{ rotate: -15, scale: 1.2 }} transition={{ duration: 0.3 }}>

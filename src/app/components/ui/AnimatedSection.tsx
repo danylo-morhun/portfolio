@@ -19,7 +19,7 @@ export const AnimatedSection = ({
 }: AnimatedSectionProps) => {
   return (
     <motion.section
-      className={`rounded-2xl bg-[var(--cards)] w-full shadow-sm mt-2 pb-2 ${className}`}
+      className={`glass glass-hover rounded-3xl w-full mt-4 pb-2 liquid-float ${className}`}
       variants={variants}
       initial={initial}
       animate={animate}

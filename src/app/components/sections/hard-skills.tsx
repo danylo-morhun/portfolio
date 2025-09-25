@@ -15,6 +15,7 @@ export default function HardSkills() {
   const [hardSkills, setHardSkills] = useState<HardSkill[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [showAll, setShowAll] = useState(false);
+  const [expandedSkills, setExpandedSkills] = useState<Set<number>>(new Set());
 
   useEffect(() => {
     const fetchSkills = async () => {
@@ -35,13 +36,13 @@ export default function HardSkills() {
   }, []);
 
   const SkeletonSkill = () => (
-    <div className="w-full bg-[var(--cards)] mt-2 rounded-lg p-4 flex items-center animate-pulse">
+    <div className="glass-inside w-full mt-2 rounded-2xl p-4 flex items-center animate-pulse">
       <div className="flex-shrink-0 w-16 h-16 mr-4">
-        <div className="w-16 h-16 rounded-full bg-[var(--foreground-10)]" />
+        <div className="w-16 h-16 rounded-full bg-[var(--foreground-20)]" />
       </div>
       <div className="flex-1">
-        <div className="h-6 w-3/4 bg-[var(--foreground-10)] rounded mb-2" />
-        <div className="h-4 w-1/2 bg-[var(--foreground-10)] rounded" />
+        <div className="h-6 w-3/4 bg-[var(--foreground-20)] rounded mb-2" />
+        <div className="h-4 w-1/2 bg-[var(--foreground-20)] rounded" />
       </div>
     </div>
   );
@@ -50,8 +51,29 @@ export default function HardSkills() {
   const hasMoreSkills = hardSkills.length > 3;
   const peekSkill = !showAll && hasMoreSkills ? hardSkills[3] : null;
 
+  const toggleSkillExpansion = (skillId: number) => {
+    setExpandedSkills(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(skillId)) {
+        newSet.delete(skillId);
+      } else {
+        newSet.add(skillId);
+      }
+      return newSet;
+    });
+  };
+
+  const truncateDescription = (description: string, maxLength: number = 60) => {
+    if (description.length <= maxLength) return description;
+    return description.substring(0, maxLength) + '...';
+  };
+
+  const isDescriptionLong = (description: string, maxLength: number = 60) => {
+    return description.length > maxLength;
+  };
+
   return (
-    <div className="m-2 bg-[var(--background)] rounded-xl px-4 pt-4 pb-4">
+    <div className="m-2 rounded-xl px-4 pt-4 pb-4">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center">
           <motion.div
@@ -63,10 +85,10 @@ export default function HardSkills() {
         </div>
         {hasMoreSkills && (
           <motion.button
-            className="bg-none border-2 border-solid border-[var(--border)] text-[var(--foreground)] font-bold px-4 rounded-lg relative overflow-hidden cursor-pointer"
+            className="glass-inside border-2 border-solid border-[var(--glass-border)] text-[var(--foreground)] font-bold px-4 rounded-2xl relative overflow-hidden cursor-pointer"
             whileHover={{
               scale: 1.05,
-              backgroundColor: 'var(--cards)',
+              backgroundColor: 'var(--cards-hover)',
               borderColor: 'var(--primary)',
               transition: { duration: 0.2 },
             }}
@@ -106,7 +128,7 @@ export default function HardSkills() {
                   damping: 20,
                 }}
                 whileHover={{ scale: 1.02 }}
-                className="w-full bg-[var(--cards)] mt-2 rounded-lg p-4 flex items-center"
+                className="glass-inside glass-hover w-full mt-2 rounded-2xl p-4 flex items-center"
               >
                 <motion.div
                   className="relative flex-shrink-0 w-16 h-16 mr-4"
@@ -119,7 +141,7 @@ export default function HardSkills() {
                   />
                   <div className="relative w-full h-full rounded-full flex items-center justify-center">
                     <motion.div
-                      className="text-xl w-12 h-12 rounded-full font-bold flex items-center justify-center text-white relative overflow-hidden"
+                      className="glass-inside text-xl w-12 h-12 rounded-full font-bold flex items-center justify-center text-white relative overflow-hidden"
                       style={{ backgroundColor: skill.color }}
                       whileHover={{ scale: 1.1 }}
                     >
@@ -132,7 +154,7 @@ export default function HardSkills() {
                     </motion.div>
                   </div>
                 </motion.div>
-                <div className="font-bold min-w-0">
+                <div className="font-bold min-w-0 flex-1">
                   <motion.p className="m-0 text-xl break-words" whileHover={{ color: skill.color }}>
                     {skill.title}
                   </motion.p>
@@ -140,8 +162,24 @@ export default function HardSkills() {
                     className="text-[var(--foreground-50)] font-medium break-words"
                     whileHover={{ color: 'var(--foreground)' }}
                   >
-                    {skill.description}
+                    {expandedSkills.has(skill.id) 
+                      ? skill.description 
+                      : truncateDescription(skill.description)
+                    }
                   </motion.span>
+                  {isDescriptionLong(skill.description) && (
+                    <motion.button
+                      className="ml-2 text-[var(--primary)] font-medium text-sm hover:underline"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        toggleSkillExpansion(skill.id);
+                      }}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      {expandedSkills.has(skill.id) ? 'Show less' : 'Show more'}
+                    </motion.button>
+                  )}
                 </div>
               </motion.div>
             ))}
@@ -156,7 +194,7 @@ export default function HardSkills() {
                 duration: 0.4,
                 ease: 'easeInOut',
               }}
-              className="w-full bg-[var(--cards)] mt-2 rounded-lg p-4 flex items-center blur-[1px] cursor-pointer"
+              className="glass-inside w-full mt-2 rounded-2xl p-4 flex items-center blur-[1px] cursor-pointer"
               onClick={() => setShowAll(true)}
               whileHover={{ opacity: 0.6, scale: 1.02 }}
             >
@@ -180,15 +218,31 @@ export default function HardSkills() {
                 </div>
               </motion.div>
               <motion.div
-                className="font-bold min-w-0"
+                className="font-bold min-w-0 flex-1"
                 initial={{ x: -10, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ duration: 0.4, ease: 'easeInOut' }}
               >
                 <p className="m-0 text-xl break-words">{peekSkill.title}</p>
                 <span className="text-[var(--foreground-50)] font-medium break-words">
-                  {peekSkill.description}
+                  {expandedSkills.has(peekSkill.id) 
+                    ? peekSkill.description 
+                    : truncateDescription(peekSkill.description)
+                  }
                 </span>
+                {isDescriptionLong(peekSkill.description) && (
+                  <motion.button
+                    className="ml-2 text-[var(--primary)] font-medium text-sm hover:underline"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleSkillExpansion(peekSkill.id);
+                    }}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    {expandedSkills.has(peekSkill.id) ? 'Show less' : 'Show more'}
+                  </motion.button>
+                )}
               </motion.div>
             </motion.div>
           )}
