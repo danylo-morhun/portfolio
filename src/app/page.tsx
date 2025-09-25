@@ -13,12 +13,13 @@ import { FADE_IN_ANIMATION, SLIDE_UP_ANIMATION } from '@/app/lib/constants';
 
 export default function HomePage() {
   return (
-    <motion.div
-      className="pt-4 px-2 pb-2 sm:p-4 w-full max-w-[600px] mx-auto relative z-10"
-      variants={FADE_IN_ANIMATION}
-      initial="hidden"
-      animate="visible"
-    >
+    <main>
+      <motion.div
+        className="pt-4 px-2 pb-2 sm:p-4 w-full max-w-[600px] mx-auto relative z-10"
+        variants={FADE_IN_ANIMATION}
+        initial="hidden"
+        animate="visible"
+      >
       <Header />
 
       <AnimatedSection variants={SLIDE_UP_ANIMATION}>
@@ -98,7 +99,7 @@ export default function HomePage() {
               <motion.div whileHover={{ rotate: 30 }} transition={{ duration: 0.3 }}>
                 <Image
                   src="/hello.png"
-                  alt="Hello"
+                  alt="Hello wave emoji - Danylo Morhun greeting"
                   width={20}
                   height={20}
                   className="ml-2 sm:w-6 sm:h-6"
@@ -144,7 +145,7 @@ export default function HomePage() {
             >
               <Image
                 src="/face.webp"
-                alt="Face"
+                alt="Danylo Morhun - Frontend Developer professional headshot"
                 width={144}
                 height={144}
                 priority
@@ -154,11 +155,20 @@ export default function HomePage() {
           </motion.div>
         </div>
 
-        <HardSkills />
-        <Experience />
-        <CallToAction />
-        <SocialLinks />
+        <section aria-label="Technical Skills">
+          <HardSkills />
+        </section>
+        <section aria-label="Professional Experience">
+          <Experience />
+        </section>
+        <section aria-label="Contact and Hire">
+          <CallToAction />
+        </section>
+        <section aria-label="Social Media Links">
+          <SocialLinks />
+        </section>
       </AnimatedSection>
-    </motion.div>
+      </motion.div>
+    </main>
   );
 }
