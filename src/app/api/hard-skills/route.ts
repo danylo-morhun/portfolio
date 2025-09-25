@@ -19,7 +19,7 @@ const hardSkills = [
     id: 3,
     title: 'Architecture & Tools',
     abbr: 'AT',
-    description: 'Microservices, Serverless (Cloud Functions), REST APIs, GraphQL',
+    description: 'Microservices, Serverless (Cloud Functions), REST APIs, GraphQL, OAuth, Payment APIs (Cardknox), Communication APIs (Plivo, SendGrid), Google Maps API',
     color: '#FF8C42',
   },
   {
@@ -61,7 +61,7 @@ const hardSkills = [
     id: 9,
     title: 'DevOps',
     abbr: 'DO',
-    description: 'Docker (development)',
+    description: 'Docker (development), AWS S3, CloudFront, Route 53, IAM, EC2',
     color: '#4CAF50',
   },
   {

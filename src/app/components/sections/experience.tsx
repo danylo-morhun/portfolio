@@ -41,7 +41,7 @@ const Experience: React.FC = () => {
                 className="text-[var(--foreground-50)] font-medium"
                 whileHover={{ color: 'var(--foreground)' }}
               >
-                Dec 2021 - Mar 2025 (3 years 4 months)
+                Dec 2021 - Sept 2025 (3 years 10 months)
               </motion.span>
             </motion.div>
             <motion.div whileHover={{ rotate: -15, scale: 1.2 }} transition={{ duration: 0.3 }}>

@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { AnimatedSection } from '@/app/components/ui/AnimatedSection';
+import ProjectModal from '@/app/components/ui/ProjectModal';
 import Header from '@/app/components/header';
 import CallToAction from '@/app/components/sections/call-to-action';
 import SocialLinks from '@/app/components/sections/social-links';
@@ -12,8 +13,10 @@ import { FADE_IN_ANIMATION, SLIDE_UP_ANIMATION } from '@/app/lib/constants';
 interface Project {
   id: number;
   title: string;
+  shortDescription: string;
   description: string;
   stack: string[];
+  duration?: string;
 }
 
 interface Experience {
@@ -28,6 +31,8 @@ interface Experience {
 export default function ExperiencePage() {
   const [experience, setExperience] = useState<Experience[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const fetchExperience = async () => {
@@ -46,6 +51,17 @@ export default function ExperiencePage() {
 
     fetchExperience();
   }, []);
+
+  const openProjectModal = (project: Project) => {
+    setSelectedProject(project);
+    setIsModalOpen(true);
+  };
+
+  const closeProjectModal = () => {
+    setIsModalOpen(false);
+    setSelectedProject(null);
+  };
+
 
   const SkeletonExperience = () => (
     <div className="w-full bg-[var(--cards)] mt-2 rounded-lg p-4 animate-pulse">
@@ -97,6 +113,7 @@ export default function ExperiencePage() {
         </div>
 
         <div className="px-4 pb-4">
+          
           {isLoading ? (
             <>
               <SkeletonExperience />
@@ -160,24 +177,56 @@ export default function ExperiencePage() {
 
                 <div className="space-y-4">
                   {exp.projects.map(project => (
-                    <motion.div
+                    <motion.button
                       key={project.id}
-                      className="bg-[var(--cards)] rounded-lg p-4"
+                      className="bg-[var(--cards)] rounded-lg p-4 relative group select-none w-full text-left border-0 cursor-pointer"
                       whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      onClick={() => openProjectModal(project)}
+                      style={{ 
+                        WebkitTapHighlightColor: 'transparent',
+                        touchAction: 'manipulation'
+                      }}
+                      aria-label={`Open details for ${project.title}`}
                     >
-                      <motion.h3
-                        className="text-lg font-bold mb-2"
-                        whileHover={{ color: 'var(--primary)' }}
-                      >
-                        {project.title}
-                      </motion.h3>
+                      <div className="flex items-center justify-between mb-2">
+                        <div className="flex items-center gap-2 flex-1 min-w-0" style={{ maxWidth: 'calc(100% - 80px)' }}>
+                          {/* Click indicator */}
+                          <motion.div
+                            className="w-2 h-2 rounded-full bg-[var(--primary)] opacity-60 transition-opacity flex-shrink-0"
+                            whileHover={{ scale: 1.2 }}
+                          />
+                          <motion.h3
+                            className="text-lg font-bold text-left"
+                            whileHover={{ color: 'var(--primary)' }}
+                            title={project.title}
+                            style={{ 
+                              whiteSpace: 'nowrap',
+                              overflow: 'hidden',
+                              textOverflow: 'ellipsis',
+                              maxWidth: '100%',
+                              width: '100%'
+                            }}
+                          >
+                            {project.title}
+                          </motion.h3>
+                        </div>
+                        {project.duration && (
+                          <motion.span
+                            className="text-sm text-[var(--foreground-50)] font-medium px-2 py-1 bg-[var(--cards)] rounded-full flex-shrink-0 ml-2"
+                            whileHover={{ color: 'var(--foreground)' }}
+                          >
+                            {project.duration}
+                          </motion.span>
+                        )}
+                      </div>
                       <motion.p
-                        className="text-[var(--foreground-50)] mb-3"
+                        className="text-[var(--foreground-50)] mb-3 text-left"
                         whileHover={{ color: 'var(--foreground)' }}
                       >
-                        {project.description}
+                        {project.shortDescription}
                       </motion.p>
-                      <div className="flex flex-wrap gap-2">
+                      <div className="flex flex-wrap gap-2 justify-start">
                         {project.stack.map((tech, index) => (
                           <motion.span
                             key={index}
@@ -201,7 +250,7 @@ export default function ExperiencePage() {
                           </motion.span>
                         ))}
                       </div>
-                    </motion.div>
+                    </motion.button>
                   ))}
                 </div>
               </motion.div>
@@ -212,6 +261,13 @@ export default function ExperiencePage() {
         <CallToAction />
         <SocialLinks />
       </AnimatedSection>
+
+      {/* Project Modal */}
+      <ProjectModal
+        isOpen={isModalOpen}
+        onClose={closeProjectModal}
+        project={selectedProject}
+      />
     </motion.div>
   );
 }
