@@ -17,6 +17,23 @@ const nextConfig: NextConfig = {
   // Compression
   compress: true,
   
+  // Redirects to ensure proper domain handling
+  async redirects() {
+    return [
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'danylo-morhun.vercel.app',
+          },
+        ],
+        destination: 'https://danylomorhun.com/:path*',
+        permanent: true,
+      },
+    ];
+  },
+
   // Headers for better SEO and security
   async headers() {
     return [
